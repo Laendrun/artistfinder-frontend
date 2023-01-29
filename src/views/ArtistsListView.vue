@@ -27,8 +27,8 @@
 
 <template>
 	<div class="container">
-		<div class="row" id="artitsCards">
-			<ArtistCard class="my-3 mx-3" v-for="artist in artists" v-bind:key="artist.artist_id" :artist=artist />
+		<div class="row" id="artistsCards">
+			<ArtistCard class="my-3" v-for="artist in artists" v-bind:key="artist.artist_id" :artist=artist />
 		</div>
 	</div>
 </template>

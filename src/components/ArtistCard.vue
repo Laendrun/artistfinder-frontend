@@ -16,15 +16,21 @@
 </script>
 
 <template>
-<div class="card" style="width: 18rem;">
-	<img class="card-img-top" src="@/assets/accoustic_guitar.jpg" alt="Card image cap">
-	<div class="card-body">
-		<h5 class="card-title">{{ artist.artist_name }}</h5>
-		<p class="card-text">{{ t('styles.style') }}: {{ t(`styles.style_${artist.style_id}`) }}</p>
-		<p class="card-text">{{ t('types.type') }}: {{ t(`types.type_${artist.type_id}`) }}</p>
-		<a href="#" class="btn btn-primary">{{ t('artistCard.see_profile') }}</a>
+	<div class="row">
+		<div class="col-sm-1"></div>
+		<div class="col-sm-10">
+			<div class="card">
+				<img class="card-img-top" src="@/assets/accoustic_guitar.jpg" alt="Card image cap">
+				<div class="card-body">
+					<h5 class="card-title">{{ artist.artist_name }}</h5>
+					<p class="card-text">{{ t('styles.style') }}: {{ t(`styles.style_${artist.style_id}`) }}</p>
+					<p class="card-text">{{ t('types.type') }}: {{ t(`types.type_${artist.type_id}`) }}</p>
+					<a href="#" class="btn btn-primary">{{ t('artistCard.see_profile') }}</a>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-1"></div>
 	</div>
-</div>
 </template>
 
 <style scoped>
