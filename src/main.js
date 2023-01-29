@@ -1,4 +1,28 @@
 import { createApp } from 'vue'
+import "bootstrap/dist/css/bootstrap.css"
 import App from './App.vue'
+import router from './router/router.js'
+import vue3GoogleLogin from 'vue3-google-login'
+import "bootstrap"
+import i18n from './i18n'
 
-createApp(App).mount('#app')
+import { library } from "@fortawesome/fontawesome-svg-core"
+import { faGithub } from "@fortawesome/free-brands-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome"
+
+router.beforeEach((to, from) => {
+	from
+	let language = to.params.lang;
+	if (!language)
+		language = 'en'
+	i18n.global.locale.value = language
+})
+
+library.add(faGithub)
+const app = createApp(App).use(i18n).component("font-awesome-icon", FontAwesomeIcon);
+app.use(router)
+app.use(vue3GoogleLogin, {
+	clientId: '475355472399-91pnjujdun95tchfln0o8o73grb8uft0.apps.googleusercontent.com'
+})
+app.mount('#app')
+
