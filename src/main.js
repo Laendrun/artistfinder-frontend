@@ -1,9 +1,8 @@
 import { createApp } from 'vue'
-import "bootstrap/dist/css/bootstrap.css"
+import 'bootstrap/dist/css/bootstrap.css'
 import App from './App.vue'
 import router from './router/router.js'
 import vue3GoogleLogin from 'vue3-google-login'
-import "bootstrap"
 import i18n from './i18n'
 
 import { library } from "@fortawesome/fontawesome-svg-core"
@@ -14,7 +13,7 @@ router.beforeEach((to, from) => {
 	from
 	let language = to.params.lang;
 	if (!language)
-		language = 'en'
+	language = 'fr'
 	i18n.global.locale.value = language
 })
 
@@ -25,4 +24,3 @@ app.use(vue3GoogleLogin, {
 	clientId: '475355472399-91pnjujdun95tchfln0o8o73grb8uft0.apps.googleusercontent.com'
 })
 app.mount('#app')
-

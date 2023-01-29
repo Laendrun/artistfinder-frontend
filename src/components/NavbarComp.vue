@@ -1,13 +1,11 @@
 <script setup>
-	const ls = localStorage.getItem('Authorization')
-	let isLoggedIn = false
-	if (ls)
-		isLoggedIn = true
+	import LocalSwitcher from './LocalSwitcher.vue'
+	import { useI18n } from 'vue-i18n'
 
-	const logout = () => {
-		localStorage.clear();
-		window.location.replace('https://www.artistfinder.world/');
-	}
+	const { t } = useI18n({
+		inheritLocale: true,
+		useScope: 'local'
+	})
 </script>
 
 <style scoped>
@@ -19,9 +17,11 @@
 		margin-left: 1vh;
 		margin-right: 1vh;
 	}
-	#logout-icon {
-		cursor: pointer;
+	.localeSwitcher {
+		margin-left: auto;
+		margin-right: 3vh;
 	}
+
 </style>
 
 <template>
@@ -33,23 +33,9 @@
 			</button>
 			<div class="collapse navbar-collapse" id="mainNav">
 				<RouterLink :to="`/${$i18n.locale}/artists`" class="nav-link nav-router-link">
-					Artistes
+					{{ t('nav.artists') }}
 				</RouterLink>
-				<!--<RouterLink to="/profile" class="nav-link nav-router-link d-none d-lg-block">
-					<font-awesome-icon icon="fa-regular fa-user" />
-				</RouterLink>
-				<RouterLink to="/profile" class="nav-link nav-router-link d-lg-none">
-					Profil
-				</RouterLink>
-				<RouterLink to="/chat" class="nav-link nav-router-link d-none d-lg-block">
-					<font-awesome-icon icon="fa-regular fa-comments" />
-				</RouterLink>
-				<RouterLink to="/chat" class="nav-link nav-router-link d-lg-none">
-					Chat
-				</RouterLink>-->
-				<div v-if="isLoggedIn" @click="logout" id="logout-icon" class="nav-link nav-router-link">
-					<!--<font-awesome-icon icon="fa-solid fa-right-from-bracket" />-->
-				</div>
+				<LocalSwitcher class="localeSwitcher" />
 			</div>
 		</nav>
 	</div>
