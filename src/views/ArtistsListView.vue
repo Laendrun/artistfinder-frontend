@@ -1,5 +1,5 @@
 <script setup>
-	import ArtistCard from '@/components/ArtistCard.vue'
+	import ArtistCard from '@/components/ArtistsListCard.vue'
 	import { onMounted } from 'vue'
 	import { useI18n } from 'vue-i18n'
 
@@ -18,7 +18,6 @@
 	}
 
 	const artists = await getData()
-	console.log(artists);
 	onMounted(() => {
 		document.title = t('artistsList.title')
 	})

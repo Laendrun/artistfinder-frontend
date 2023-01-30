@@ -6,7 +6,9 @@ import vue3GoogleLogin from 'vue3-google-login'
 import i18n from './i18n'
 
 import { library } from "@fortawesome/fontawesome-svg-core"
-import { faGithub } from "@fortawesome/free-brands-svg-icons"
+import { faGithub, faWhatsapp } from "@fortawesome/free-brands-svg-icons"
+import { faShareFromSquare } from '@fortawesome/free-regular-svg-icons'
+import { faLink } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome"
 
 router.beforeEach((to, from) => {
@@ -17,7 +19,7 @@ router.beforeEach((to, from) => {
 	i18n.global.locale.value = language
 })
 
-library.add(faGithub)
+library.add(faGithub, faWhatsapp, faShareFromSquare, faLink)
 const app = createApp(App).use(i18n).component("font-awesome-icon", FontAwesomeIcon);
 app.use(router)
 app.use(vue3GoogleLogin, {

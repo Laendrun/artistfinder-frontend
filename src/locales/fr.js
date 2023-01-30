@@ -1,5 +1,13 @@
 const fr = 
 {
+	global: {
+		share: 'Partager',
+		close: 'Fermer',
+		copyLink: 'Copier le lien',
+		copied: 'Copié',
+		shareWhatsapp: 'Partager sur Whatsapp',
+		shareText: 'Regarde cet artiste sur artistfinder.world : '
+	},
 	home: {
 		title: 'Acceuil'
 	},
@@ -13,8 +21,12 @@ const fr =
 	artistsList: {
 		title: 'Liste Artistes'
 	},
+	artistListCard: {
+		see_profile: 'Voir le profile'
+	},
 	artistCard: {
-		see_profile: 'Voir le profil'
+		title: 'Fiche Artiste',
+		descTitle: 'Description'
 	},
 	styles: {
 		style: 'Style',

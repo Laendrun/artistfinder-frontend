@@ -12,7 +12,7 @@
 <template>
 <div class="dropdown">
   <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    {{ $i18n.locale.toUpperCase() }}
+	<img height="15" :src="`/flags/${$i18n.locale}_flag.svg`" /> {{ $i18n.locale.toUpperCase() }}
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 	<a	v-for="lang in $i18n.availableLocales" 
@@ -21,6 +21,7 @@
 		href="#"
 		@click.prevent="setLocale(lang)"
 		>
+		<img height="15" :src="`/flags/${lang}_flag.svg`" />
 		{{ lang.toUpperCase() }}
 	</a>
   </div>

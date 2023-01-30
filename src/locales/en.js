@@ -1,5 +1,13 @@
 const en = 
 {
+	global: {
+		share: 'Share',
+		close: 'Close',
+		copyLink: 'Copy link',
+		copied: 'Copied',
+		shareWhatsapp: 'Share on Whatsapp',
+		shareText: 'Check out this artist on artisfinder.world : '
+	},
 	home: {
 		title: 'Home'
 	},
@@ -13,8 +21,12 @@ const en =
 	artistsList: {
 		title: 'Artists List'
 	},
-	artistCard: {
+	artistListCard: {
 		see_profile: 'See profile'
+	},
+	artistCard: {
+		title: 'Artist Profile',
+		descTitle: 'Description'
 	},
 	styles: {
 		style: 'Style',
