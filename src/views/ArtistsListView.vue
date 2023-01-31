@@ -10,14 +10,15 @@
 	})
 
 	const getData = async() => {
-		let artistData = await fetch('https://api.artistfinder.world/api/v1/artists/verified', {
+		let artistData = await fetch('https://api.artistfinder.world/api/v2/artists/verified', {
 		method: 'GET',
 		});
 		let artistJson = await artistData.json();
 		return artistJson;
 	}
 
-	const artists = await getData()
+	const data = await getData()
+	const artists = await data.content.artists;
 	onMounted(() => {
 		document.title = t('artistsList.title')
 	})

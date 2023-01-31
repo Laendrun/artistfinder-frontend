@@ -3,9 +3,10 @@ const fr =
 	global: {
 		share: 'Partager',
 		close: 'Fermer',
-		copyLink: 'Copier le lien',
+		copyLink: 'Copier',
 		copied: 'Copié',
-		shareWhatsapp: 'Partager sur Whatsapp',
+		shareVia: 'Partager ce lien via',
+		orCopy: 'Ou copier le lien',
 		shareText: 'Regarde cet artiste sur artistfinder.world : '
 	},
 	home: {

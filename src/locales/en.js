@@ -3,9 +3,10 @@ const en =
 	global: {
 		share: 'Share',
 		close: 'Close',
-		copyLink: 'Copy link',
+		copyLink: 'Copy',
 		copied: 'Copied',
-		shareWhatsapp: 'Share on Whatsapp',
+		shareVia: 'Share this link via',
+		orCopy: 'Or copy link',
 		shareText: 'Check out this artist on artisfinder.world : '
 	},
 	home: {

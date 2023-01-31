@@ -14,14 +14,15 @@
 	const route = useRoute()
 
 	const getData = async() => {
-		let artistData = await fetch(`https://api.artistfinder.world/api/v1/artists/verified/${route.params.id}`, {
+		let artistData = await fetch(`https://api.artistfinder.world/api/v2/artists/verified/${route.params.id}`, {
 		method: 'GET',
 		});
 		let artistJson = await artistData.json();
 		return artistJson;
 	}
 
-	const artist = await getData()
+	const data = await getData()
+	const artist = data.content.artist
 	onMounted(() => {
 		document.title = t('artistCard.title')
 	})
