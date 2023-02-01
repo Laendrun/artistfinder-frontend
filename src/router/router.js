@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
 import ArtistsListView from '@/views/ArtistsListView.vue'
 import ArtistCardView from '@/views/ArtistCardView.vue'
+import NotFoundView from '@/views/NotFoundView.vue'
 import i18n from '@/i18n'
 
 const routes = [
@@ -20,12 +21,17 @@ const routes = [
 			{
 				path: 'artists/',
 				name: 'artists',
-				component: ArtistsListView,
+				component: ArtistsListView
 			},
 			{
 				path: 'artists/:id',
 				name: 'artist',
 				component: ArtistCardView
+			},
+			{
+				path: '404',
+				name: 'notFoudn',
+				component: NotFoundView
 			}
 		]
 	}

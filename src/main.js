@@ -15,7 +15,7 @@ router.beforeEach((to, from) => {
 	from
 	let language = to.params.lang;
 	if (!language)
-	language = 'fr'
+		language = 'fr'
 	i18n.global.locale.value = language
 })
 

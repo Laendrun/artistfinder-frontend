@@ -1,7 +1,10 @@
 <script setup>
 	import ArtistCard from '@/components/ArtistsListCard.vue'
+	import i18n from '@/i18n';
+	import router from '@/router/router'
 	import { onMounted } from 'vue'
 	import { useI18n } from 'vue-i18n'
+	import { useRoute } from 'vue-router'
 
 	const { t } = useI18n({
 		fallbackWarn: false,
@@ -9,8 +12,16 @@
 		useScope: 'local'
 	})
 
+	const route = useRoute();
+	let offset = 0;
+	let limit = 2;
+	let artists;
+	
+	if (route.query.page)
+		offset = (route.query.page - 1) * limit;
+	
 	const getData = async() => {
-		let artistData = await fetch('https://api.artistfinder.world/api/v2/artists/verified', {
+		let artistData = await fetch(`https://api.artistfinder.world/api/v2/artists/verified?offset=${offset}&limit=${limit}`, {
 		method: 'GET',
 		});
 		let artistJson = await artistData.json();
@@ -18,7 +29,11 @@
 	}
 
 	const data = await getData()
-	const artists = await data.content.artists;
+	if (data.status == 404)
+		router.replace({ path: `/${i18n.global.locale.value}/404` })
+	else
+		artists = await data.content.artists;
+
 	onMounted(() => {
 		document.title = t('artistsList.title')
 	})
