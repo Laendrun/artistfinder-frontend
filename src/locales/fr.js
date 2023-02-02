@@ -23,7 +23,7 @@ const fr =
 		title: 'Liste Artistes'
 	},
 	artistListCard: {
-		see_profile: 'Voir le profile'
+		see_profile: 'Voir le profil'
 	},
 	artistCard: {
 		title: 'Fiche Artiste',
@@ -43,7 +43,15 @@ const fr =
 		type_5: 'Peintre'
 	},
 	nav: {
-		artists: 'Artistes'
+		navbar: {
+			artists: 'Artistes'
+		},
+		pagination: {
+			first: 'Première',
+			prev: 'Précédente',
+			next: 'Suivante',
+			last: 'Dernière'
+		}
 	}
 }
 

@@ -43,7 +43,9 @@ const en =
 		type_5: 'Painter'
 	},
 	nav: {
-		artists: 'Artists'
+		navbar: {
+			artists: 'Artists'
+		}
 	}
 }
 

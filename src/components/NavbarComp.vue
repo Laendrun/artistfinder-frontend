@@ -8,7 +8,10 @@
 	})
 </script>
 
-<style scoped>
+<style lang="scss">
+
+	@import '../../node_modules/bootstrap/scss/bootstrap.scss';
+	
 	.navbarComp {
 		display: block;
 		margin-bottom: 10vh;
@@ -16,6 +19,7 @@
 	.nav-router-link {
 		margin-left: 1vh;
 		margin-right: 1vh;
+		color: #0ed66d !important;
 	}
 	.localeSwitcher {
 		margin-left: auto;
@@ -33,7 +37,7 @@
 			</button>
 			<div class="collapse navbar-collapse" id="mainNav">
 				<RouterLink :to="`/${$i18n.locale}/artists`" class="nav-link nav-router-link">
-					{{ t('nav.artists') }}
+					{{ t('nav.navbar.artists') }}
 				</RouterLink>
 				<LocalSwitcher class="localeSwitcher" />
 			</div>

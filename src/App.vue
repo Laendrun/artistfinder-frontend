@@ -15,21 +15,14 @@
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   text-align: center;
-  color: #0ed66d;
 }
+</style>
 
-.btn-primary {
-    --bs-btn-bg: #0ed66d !important;
-    --bs-btn-border-color: #0ed66d !important;
-    --bs-btn-disabled-bg: #0ed66d !important;
-    --bs-btn-disabled-border-color: #0ed66d !important;
-    --bs-btn-hover-bg: #0cc647 !important;
-    --bs-btn-hover-border-color: #0bc03a !important;
-    --bs-btn-active-bg: #0bc03a !important;
-    --bs-btn-active-border-color: #0abb2e !important;
-  }
+<style lang="scss">
+	$theme-colors: (
+		"primary": #0ed66d,
+	);
+	$primary: #0ed66d;
 
-  .text-primary {
-    color: #0ed66d !important;
-  }
+	@import '../node_modules/bootstrap/scss/bootstrap.scss';
 </style>
