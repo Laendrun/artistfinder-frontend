@@ -1,27 +1,35 @@
 <script setup>
 	import ArtistCard from '@/components/ArtistsListCard.vue'
 	import PaginationBar from '@/components/PaginationBar.vue'
-	// import i18n from '@/i18n';
-	// import router from '@/router/router'
+	import i18n from '@/i18n';
+	import router from '@/router/router'
 	import ArtistsDataService from '@/services/ArtstsDataSerice'
 	import { onMounted, reactive } from 'vue'
 	import { useI18n } from 'vue-i18n'
+	import { useRoute } from 'vue-router'
 
 	const { t } = useI18n({
 		fallbackWarn: false,
 		inheritLocale: true,
 		useScope: 'local'
 	})
+	const route = useRoute()
 
 	let state = reactive({
 		rawData: null,
 		artists: [],
 		currPage: 1,
-		limit: 25,
+		limit: 2,
 		totalPage: 0,
-		pageOffset: 0
+		pageOffset: 0,
 	})
 	const maxPage = 5;
+
+	if (route.query.page)
+	{
+		state.offset = (route.query.page - 1) * state.limit
+		state.currPage = ~~route.query.page
+	}
 
 	const retrieveArtists = async (off, lim) => {
 		const params = {
@@ -34,9 +42,8 @@
 			artistsJSON = response.data
 		})
 		.catch(e => {
-			// if (e.response.status == 404)
-				// router.replace({ path: `/${i18n.global.locale.value}/404` })
-				console.log(e)
+			if (e.response.status == 404)
+				router.replace({ path: `/${i18n.global.locale.value}/404` })
 		});
 		return (artistsJSON);
 	}
@@ -52,8 +59,9 @@
 	const setPage = async (n) => {
 		if (n > 0 && n <= state.totalPage)
 			state.currPage = n
-		state.rawData = await retrieveArtists((state.currPage - 1) * state.limit, state.limit)
+		state.rawData = await retrieveArtists(state.offset, state.limit)
 		state.artists = await state.rawData.content.artists
+		router.push({query: { 'page': n }})
 		if (state.currPage < maxPage)
 			state.pageOffset = 0;
 		else if (state.currPage >= state.totalPage - Math.floor(maxPage / 2))
@@ -61,6 +69,8 @@
 		else if (state.currPage >= maxPage)
 			state.pageOffset = state.currPage - Math.floor(maxPage / 2)
 	}
+
+	setPage(state.currPage)
 
 </script>
 

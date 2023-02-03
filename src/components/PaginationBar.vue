@@ -16,8 +16,6 @@ import { defineProps } from 'vue'
 		}
 	})
 
-	// max => maximum number of pages shown
-
 </script>
 
 <template>
