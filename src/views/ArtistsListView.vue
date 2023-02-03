@@ -1,8 +1,8 @@
 <script setup>
 	import ArtistCard from '@/components/ArtistsListCard.vue'
 	import PaginationBar from '@/components/PaginationBar.vue'
-	import i18n from '@/i18n';
-	import router from '@/router/router'
+	// import i18n from '@/i18n';
+	// import router from '@/router/router'
 	import ArtistsDataService from '@/services/ArtstsDataSerice'
 	import { onMounted, reactive } from 'vue'
 	import { useI18n } from 'vue-i18n'
@@ -18,8 +18,10 @@
 		artists: [],
 		currPage: 1,
 		limit: 25,
-		totalPage: 0
+		totalPage: 0,
+		pageOffset: 0
 	})
+	const maxPage = 5;
 
 	const retrieveArtists = async (off, lim) => {
 		const params = {
@@ -32,8 +34,9 @@
 			artistsJSON = response.data
 		})
 		.catch(e => {
-			if (e.response.status == 404)
-				router.replace({ path: `/${i18n.global.locale.value}/404` })
+			// if (e.response.status == 404)
+				// router.replace({ path: `/${i18n.global.locale.value}/404` })
+				console.log(e)
 		});
 		return (artistsJSON);
 	}
@@ -51,6 +54,12 @@
 			state.currPage = n
 		state.rawData = await retrieveArtists((state.currPage - 1) * state.limit, state.limit)
 		state.artists = await state.rawData.content.artists
+		if (state.currPage < maxPage)
+			state.pageOffset = 0;
+		else if (state.currPage >= state.totalPage - Math.floor(maxPage / 2))
+			state.pageOffset = state.totalPage - maxPage
+		else if (state.currPage >= maxPage)
+			state.pageOffset = state.currPage - Math.floor(maxPage / 2)
 	}
 
 </script>
@@ -61,15 +70,13 @@
 			<ArtistCard class="my-3" v-for="artist in state.artists" v-bind:key="artist.artist_id" :artist=artist />
 		</div>
 		<div class="row">
-			<PaginationBar 
+			<PaginationBar
 				v-if="state.totalPage != 1"
 				:tp="state.totalPage"
 				:cp="state.currPage"
-				@goFirst="setPage(1)"
-				@goPrev="setPage(state.currPage - 1)"
+				:so="state.pageOffset"
+				:max="maxPage"
 				@goPage="(n) => setPage(n)"
-				@goNext="setPage(state.currPage + 1)"
-				@goLast="setPage(state.totalPage)"
 			/>
 		</div>
 	</div>

@@ -8,7 +8,7 @@ import i18n from './i18n'
 import { library } from "@fortawesome/fontawesome-svg-core"
 import { faGithub, faWhatsapp, faTelegram } from "@fortawesome/free-brands-svg-icons"
 import { faShareFromSquare } from '@fortawesome/free-regular-svg-icons'
-import { faLink, faAngleLeft, faAnglesLeft, faAngleRight, faAnglesRight } from '@fortawesome/free-solid-svg-icons'
+import { faLink, faAngleLeft, faAnglesLeft, faAngleRight, faAnglesRight, faEllipsis } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome"
 
 router.beforeEach((to, from) => {
@@ -20,7 +20,7 @@ router.beforeEach((to, from) => {
 })
 
 library.add(faGithub, faWhatsapp, faTelegram, faShareFromSquare, faLink)
-library.add(faAngleLeft, faAnglesLeft, faAngleRight, faAnglesRight)
+library.add(faAngleLeft, faAnglesLeft, faAngleRight, faAnglesRight, faEllipsis)
 const app = createApp(App).use(i18n).component("font-awesome-icon", FontAwesomeIcon);
 app.use(router)
 app.use(vue3GoogleLogin, {

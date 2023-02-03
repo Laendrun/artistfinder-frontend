@@ -1,5 +1,5 @@
 <script setup>
-	import { defineProps } from 'vue'
+import { defineProps } from 'vue'
 
 	defineProps({
 		tp: {
@@ -7,63 +7,66 @@
 		},
 		cp: {
 			type: Number
+		},
+		so: {
+			type: Number
+		},
+		max: {
+			type: Number
 		}
 	})
+
+	// max => maximum number of pages shown
+
 </script>
 
 <template>
+
 	<ul class="pagination justify-content-center">
-
-		<!-- First btn -->
-		<li v-if="cp != 1" class="page-item">
-			<button class="page-link" @click="$emit('goFirst')">
+		<!-- if current page is more than 1, show previous and first buttons -->
+		<li v-if="cp > 1" class="page-item">
+			<button class="page-link" @click="$emit('goPage', (1))">
 				<font-awesome-icon icon="fa-solid fa-angles-left" />
 			</button>
 		</li>
 		<li v-else class="page-item disabled">
-			<button class="page-link" @click="$emit('goFirst')">
+			<button class="page-link">
 				<font-awesome-icon icon="fa-solid fa-angles-left" />
 			</button>
 		</li>
-
-		<!-- Prev btn -->
-		<li v-if="cp != 1" class="page-item">
-			<button class="page-link" @click="$emit('goPrev')">
+		<li v-if="cp > 1" class="page-item">
+			<button class="page-link" @click="$emit('goPage', (cp - 1))">
 				<font-awesome-icon icon="fa-solid fa-angle-left" />
 			</button>
 		</li>
 		<li v-else class="page-item disabled">
-			<button class="page-link" @click="$emit('goPrev')">
+			<button class="page-link">
 				<font-awesome-icon icon="fa-solid fa-angle-left" />
 			</button>
 		</li>
 
-
-		<li class="page-item" v-for="n in tp" v-bind:key="n" >
-			<button v-if="n == cp" class="page-link active" @click="$emit('goPage', (n))">{{ n }}</button>
-			<button v-else class="page-link" @click="$emit('goPage', (n))">{{ n }}</button>
+		<li class="page-item" v-for="n in so + max" v-bind:key="n" >
+			<button v-if="n + so == cp && n + so <= tp" class="page-link active" @click="$emit('goPage', (n + so))">{{ n + so }}</button>
+			<button v-else-if="n + so <= tp" class="page-link" @click="$emit('goPage', (n + so))">{{ n + so }}</button>
 		</li>
 
-		<!-- Next btn -->
-		<li v-if="cp != tp" class="page-item">
-			<button class="page-link" @click="$emit('goNext')">
+		<li v-if="cp < tp" class="page-item">
+			<button class="page-link" @click="$emit('goPage', (cp + 1))">
 				<font-awesome-icon icon="fa-solid fa-angle-right" />
 			</button>
 		</li>
 		<li v-else class="page-item disabled">
-			<button class="page-link" @click="$emit('goNext')">
+			<button class="page-link">
 				<font-awesome-icon icon="fa-solid fa-angle-right" />
 			</button>
 		</li>
-
-		<!-- Last btn -->
-		<li v-if="cp != tp" class="page-item">
-			<button class="page-link" @click="$emit('goLast')">
+		<li v-if="cp < tp" class="page-item">
+			<button class="page-link" @click="$emit('goPage', (tp))">
 				<font-awesome-icon icon="fa-solid fa-angles-right" />
 			</button>
 		</li>
 		<li v-else class="page-item disabled">
-			<button class="page-link" @click="$emit('goLast')">
+			<button class="page-link">
 				<font-awesome-icon icon="fa-solid fa-angles-right" />
 			</button>
 		</li>
